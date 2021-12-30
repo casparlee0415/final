@@ -1,0 +1,12 @@
+Application has thrown an uncaught exception and is terminated:
+Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only file and data URLs are supported by the default ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'
+    at new NodeError (node:internal/errors:371:5)
+    at Loader.defaultResolve [as _resolve] (node:internal/modules/esm/resolve:1016:11)
+    at Loader.resolve (node:internal/modules/esm/loader:89:40)
+    at Loader.getModuleJob (node:internal/modules/esm/loader:242:28)
+    at Loader.import (node:internal/modules/esm/loader:177:28)
+    at importModuleDynamically (node:internal/modules/cjs/loader:1041:29)
+    at importModuleDynamicallyWrapper (node:internal/vm/module:437:21)
+    at importModuleDynamically (node:vm:381:43)
+    at exports.importModuleDynamicallyCallback (node:internal/process/esm_loader:30:14)
+    at Object.<anonymous> (C:\Program Files\iisnode\interceptor.js:210:20)

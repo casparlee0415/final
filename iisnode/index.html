@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>iisnode logs</title>
+    <style type="text/css">
+        body
+        {
+            font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+        }
+        table
+        {
+            border-collapse: collapse;
+        }
+        td, th
+        {
+            border: 1px solid lightgray;
+            padding: 3px 7px 2px 7px;
+        }
+        th
+        {
+            text-align: left;
+            padding-top: 5px;
+            padding-bottom: 4px;
+            background-color: Gray;
+            color: #ffffff;
+        }
+        td.stderr
+        {
+            color: Red;
+        }
+    </style>
+</head>
+<body>
+    <table id="logFilesTable">
+        <tr>
+            <th>
+                Computer name
+            </th>
+            <th>
+                PID
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Link
+            </th>
+        </tr>
+    </table>
+    <p id="lastUpdated"></p>
+    <script type="text/javascript">
+
+        // this is replaced with actual data at runtime by code in interceptor.js
+        var logFiles = [{"file":"CASPAR-LAPTOP-10892-stderr-1640846398553.txt","computername":"CASPAR-LAPTOP","pid":10892,"type":"stderr","created":1640846398553},{"file":"CASPAR-LAPTOP-11648-stderr-1640844971589.txt","computername":"CASPAR-LAPTOP","pid":11648,"type":"stderr","created":1640844971589},{"file":"CASPAR-LAPTOP-13080-stderr-1640844276501.txt","computername":"CASPAR-LAPTOP","pid":13080,"type":"stderr","created":1640844276501},{"file":"CASPAR-LAPTOP-13584-stderr-1640844845058.txt","computername":"CASPAR-LAPTOP","pid":13584,"type":"stderr","created":1640844845058},{"file":"CASPAR-LAPTOP-15808-stderr-1640845977517.txt","computername":"CASPAR-LAPTOP","pid":15808,"type":"stderr","created":1640845977517},{"file":"CASPAR-LAPTOP-15880-stderr-1640844848767.txt","computername":"CASPAR-LAPTOP","pid":15880,"type":"stderr","created":1640844848767},{"file":"CASPAR-LAPTOP-16768-stderr-1640843413904.txt","computername":"CASPAR-LAPTOP","pid":16768,"type":"stderr","created":1640843413904},{"file":"CASPAR-LAPTOP-17280-stderr-1640845968793.txt","computername":"CASPAR-LAPTOP","pid":17280,"type":"stderr","created":1640845968793},{"file":"CASPAR-LAPTOP-17304-stderr-1640844846424.txt","computername":"CASPAR-LAPTOP","pid":17304,"type":"stderr","created":1640844846424},{"file":"CASPAR-LAPTOP-17340-stderr-1640844847429.txt","computername":"CASPAR-LAPTOP","pid":17340,"type":"stderr","created":1640844847429},{"file":"CASPAR-LAPTOP-17876-stderr-1640845977890.txt","computername":"CASPAR-LAPTOP","pid":17876,"type":"stderr","created":1640845977890},{"file":"CASPAR-LAPTOP-17904-stderr-1640845970222.txt","computername":"CASPAR-LAPTOP","pid":17904,"type":"stderr","created":1640845970222},{"file":"CASPAR-LAPTOP-3296-stderr-1640846399858.txt","computername":"CASPAR-LAPTOP","pid":3296,"type":"stderr","created":1640846399858},{"file":"CASPAR-LAPTOP-3356-stderr-1640846186846.txt","computername":"CASPAR-LAPTOP","pid":3356,"type":"stderr","created":1640846186846},{"file":"CASPAR-LAPTOP-6252-stderr-1640846398239.txt","computername":"CASPAR-LAPTOP","pid":6252,"type":"stderr","created":1640846398239},{"file":"CASPAR-LAPTOP-6256-stderr-1640844274911.txt","computername":"CASPAR-LAPTOP","pid":6256,"type":"stderr","created":1640844274911},{"file":"CASPAR-LAPTOP-7272-stderr-1640844839646.txt","computername":"CASPAR-LAPTOP","pid":7272,"type":"stderr","created":1640844839646},{"file":"CASPAR-LAPTOP-8232-stderr-1640844972547.txt","computername":"CASPAR-LAPTOP","pid":8232,"type":"stderr","created":1640844972547},{"file":"CASPAR-LAPTOP-8416-stderr-1640846186464.txt","computername":"CASPAR-LAPTOP","pid":8416,"type":"stderr","created":1640846186464},{"file":"CASPAR-LAPTOP-9428-stderr-1640846399563.txt","computername":"CASPAR-LAPTOP","pid":9428,"type":"stderr","created":1640846399563},{"file":"CASPAR-LAPTOP-9800-stderr-1640844970391.txt","computername":"CASPAR-LAPTOP","pid":9800,"type":"stderr","created":1640844970391}];
+        var lastUpdated = 1640846399886;
+        var date = new Date();
+
+        date.setTime(lastUpdated);
+        document.getElementById('lastUpdated').innerHTML = 'Index was last updated ' + date;
+
+        logFiles.sort(function (a, b) {
+            return b.created - a.created;
+        });
+
+        var logFilesTable = document.getElementById("logFilesTable");
+        for (var i = 0; i < logFiles.length; i++) {
+            var logFile = logFiles[i];
+            date.setTime(logFile.created);
+            var row = logFilesTable.insertRow(-1);
+            var computerNameCell = row.insertCell(0);
+            var pidCell = row.insertCell(1);
+            var typeCell = row.insertCell(2);
+            var dateCell = row.insertCell(3);
+            var logCell = row.insertCell(4);
+            computerNameCell.innerHTML = logFile.computername;
+            pidCell.innerHTML = logFile.pid.toString();
+            typeCell.innerHTML = logFile.type;
+            typeCell.setAttribute('class', logFile.type);
+            dateCell.innerHTML = date.toString();
+            logCell.innerHTML = '<a href="' + logFile.file + '">log</a>';
+        };
+
+    </script>
+</body>
+</html>
